@@ -24,7 +24,9 @@ public class Video {
 	public void adicionar(Visualizacao vis) {
 		visualizacoes.add(vis);
 	}
-
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	@Override
 	public String toString() {
@@ -42,5 +44,5 @@ public class Video {
 		return texto;
 	}
 
-	
+
 }

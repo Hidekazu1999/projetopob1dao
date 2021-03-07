@@ -27,7 +27,8 @@ public class Assunto {
 		}
 		return texto;
 	}
-	
-	
-	
+
+	public void setPalavra(String palavra) {
+		this.palavra = palavra;
+	}
 }

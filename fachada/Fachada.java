@@ -115,5 +115,26 @@ public class Fachada {
 		}
 		return maior;
 	}
+	public static void alterarTituloVideo(String titulo, String novotitulo) throws Exception{
+		DAO.begin();
+		Video v = daovideo.read(titulo);
+		if (v==null) {
+			throw new Exception("Alterar titulo do Video - filme inexistente:" + titulo);
+		}
+		v.setNome(novotitulo);
+		v = daovideo.update(v);
+		DAO.commit();
+	}
+
+	public static void alterarAssunto(String assunto, String novoassunto) throws Exception{
+		DAO.begin();
+		Assunto a = daoassunto.read(assunto);
+		if (a==null) {
+			throw new Exception("Alterar Assunto do Video - Assunto inexistente:" + assunto);
+		}
+		a.setPalavra(novoassunto);
+		a = daoassunto.update(a);
+		DAO.commit();
+	}
 
 }
