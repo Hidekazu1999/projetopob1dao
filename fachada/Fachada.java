@@ -1,10 +1,8 @@
 package fachada;
 
-import dao.DAO;
-import dao.DAOAssunto;
-import dao.DAOVideo;
-import dao.DAOVisualizacao;
+import dao.*;
 import modelo.Assunto;
+import modelo.Usuario;
 import modelo.Video;
 import modelo.Visualizacao;
 
@@ -14,6 +12,7 @@ public class Fachada {
 	private static DAOVideo daovideo = new DAOVideo();
 	private static DAOAssunto daoassunto = new DAOAssunto();
 	private static DAOVisualizacao daovisualizacao = new DAOVisualizacao();
+	private static DAOUsuario daousuario = new DAOUsuario();
 
 	public static void inicializar() {
 		DAO.open();
@@ -54,13 +53,67 @@ public class Fachada {
 		daoassunto.create(a);
 		DAO.commit();
 	}
-	public static Visualizacao registrarVisualizacao(String link, String email, int nota){
+	public static Visualizacao registrarVisualizacao(String link, String email, int nota)throws Exception{
 		DAO.begin();
-		Visualizacao v = daovisualizacao.read();
-		
+		Usuario usuario = daousuario.read(email);
+		Video video = daovideo.read(link);
+		if (video == null){
+			DAO.rollback();
+			throw new Exception("Video não encontrado!");
+		}
+		int idatual = maiorId(email);
+		idatual++;
+		Visualizacao v = new Visualizacao(idatual, nota, usuario, video);
 
+		daovisualizacao.create(v);
+		DAO.commit();
+		return v;
+	}
+	public static void apagarVisualizacao(int id)throws Exception{
+		DAO.begin();
+		Visualizacao vis = daovisualizacao.read(id);
+		if(vis==null){
+			DAO.rollback();
+			throw new Exception("Id não existente");
+		}
+		daovisualizacao.delete(vis);
+		DAO.commit();
+	}
+	public Visualizacao localizarVisualizacao(int id)throws Exception{
+		Visualizacao v = daovisualizacao.read(id);
+		if(v == null){
+			throw new Exception("Visualização não encontrada!");
+		}
+		return v;
+	}
+	public static List<Video> consultarVideosPorAssunto(String palavra){
+		List<Video> videos = daovideo.consultarVideosPorAssunto(palavra);
+		return videos;
+	}
+	public static List<Video> consultarVideoPorUsuario(String email){
+		List<Video> videos = daovideo.consultarVideosPorUsuario(email);
+		return videos;
+	}
+	public static List<Usuario> consultarUsuariosPorVideo(String link){
+		List<Usuario> users = daousuario.consultarUsuarioVideo(link);
+		return users;
 	}
 	public static List<Visualizacao> listarVisualizacao(){
 		return daovisualizacao.readAll();
 	}
+	public static List<Video> listarVideos(){return daovideo.readAll();}
+	public static List<Usuario> listarUsuario(){return daousuario.readAll();}
+	public static int maiorId(String usuario){
+		List<Visualizacao> visualizacoes = daovisualizacao.readAll();
+		int maior = 0;
+		if(visualizacoes.isEmpty()){
+			return maior;
+		}
+		for(Visualizacao v : visualizacoes){
+			if(v.getId()>maior);
+				maior = v.getId();
+		}
+		return maior;
+	}
+
 }

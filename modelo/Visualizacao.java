@@ -16,6 +16,10 @@ public class Visualizacao {
 		this.video = video;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	@Override
 	public String toString() {
 		return "Visualizacao [id=" + id + 

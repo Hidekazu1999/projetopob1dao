@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import com.db4o.events.ObjectEventArgs;
 import com.db4o.query.Query;
 
 import modelo.Video;
@@ -18,5 +19,19 @@ public class DAOVideo extends DAO<Video> {
 			return resultados.get(0);
 		else
 			return null;
+	}
+	public List<Video> consultarVideosPorAssunto(String palavra){
+		Query q = manager.query();
+		q.constrain(Video.class);
+		q.descend("assunto").descend("palavra").constrain(palavra);
+		List<Video> result = q.execute();
+		return result;
+	}
+	public List<Video> consultarVideosPorUsuario(String email){
+		Query q = manager.query();
+		q.constrain(Video.class);
+		q.descend("visualizacoes").descend("usuario").descend("email").constrain(email);
+		List<Video> result = q.execute();
+		return result;
 	}
 }

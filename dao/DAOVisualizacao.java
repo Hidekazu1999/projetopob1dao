@@ -1,6 +1,7 @@
 package dao;
 
 import com.db4o.query.Query;
+import modelo.Usuario;
 import modelo.Visualizacao;
 
 import java.util.List;
@@ -18,4 +19,14 @@ public class DAOVisualizacao extends DAO<Visualizacao> {
         else
             return null;
     }
+    public List<Visualizacao> consultarVisualizacaoUsuario(String email){
+        Query q = manager.query();
+        q.constrain(Visualizacao.class);
+        q.descend("usuario").descend("email").constrain(email);
+        List<Visualizacao> result = q.execute();
+        return result;
+    }
+
+
+
 }

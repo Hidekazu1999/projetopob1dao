@@ -11,7 +11,7 @@ public class DAOAssunto extends DAO<Assunto> {
 		
 		Query q = manager.query();
 		q.constrain(Assunto.class);
-		q.descend("palavra").constrain(palavra);
+		q.descend("palavra").constrain(palavra).like();
 		List<Assunto> resultados = q.execute();
 		if (resultados.size()>0)
 			return resultados.get(0);
