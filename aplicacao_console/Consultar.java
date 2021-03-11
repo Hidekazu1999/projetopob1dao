@@ -9,7 +9,6 @@ public class Consultar {
             System.out.println(Fachada.consultarVideosPorAssunto(""));
             System.out.println(Fachada. consultarVideoPorUsuario(""));
             System.out.println(Fachada.consultarUsuariosPorVideo(""));
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

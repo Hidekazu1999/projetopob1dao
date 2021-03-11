@@ -10,6 +10,7 @@ public class Cadastrar {
 			Video v;
 			v=Fachada.cadastrarVideo("www.google.com", "Site", "Pesquisa");
 			//v=Fachada.cadastrarVideo("youtube.com/video","","Pesquisa");
+			Fachada.registrarVisualizacao("www.google.com","email",10);
 		}
 		catch(Exception e){
 			System.out.println(e.getMessage()); 
