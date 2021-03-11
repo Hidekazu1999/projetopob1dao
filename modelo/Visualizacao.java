@@ -20,6 +20,24 @@ public class Visualizacao {
 		return id;
 	}
 
+	public String getdatahora() {
+		return this.datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyy hh:mm:ss"));
+	}
+
+	public String getusuario() {
+		return this.usuario.getEmail();
+	}
+
+	public String getvideo() {
+		return this.video.getlink();
+	}
+
+	public int getnota() {
+		return this.nota;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Visualizacao [id=" + id + 
@@ -27,9 +45,5 @@ public class Visualizacao {
 				", nota=" + nota +
 				"\n usuario=" + usuario.getEmail() + ", video=" + video.getNome() + "]";
 	}
-
-	
-	
-	
 
 }
