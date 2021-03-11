@@ -28,7 +28,14 @@ public class Video {
 		this.nome = nome;
 	}
 
-	@Override
+	public String getlink() {
+		return link;
+	}
+	public List<Assunto> getAssuntos() {
+		return assuntos;
+	}
+
+		@Override
 	public String toString() {
 		String texto = "Video [" + (link != null ? "link=" + link + ", " : "") + (nome != null ? "nome=" + nome + ", " : "")
 				+ "media=" + media ;
@@ -43,6 +50,7 @@ public class Video {
 		}
 		return texto;
 	}
+
 
 
 }
