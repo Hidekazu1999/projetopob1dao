@@ -20,7 +20,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		String texto =  "Usuario [email=" + email + "]";
+		String texto =  email;
 		
 		texto+="\n visualizacoes=";
 		for(Visualizacao vis : visualizacoes) {
@@ -28,8 +28,5 @@ public class Usuario {
 		}
 		return texto;
 	}
-
-	
-	
-	
 }
+
