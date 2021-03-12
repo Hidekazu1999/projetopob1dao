@@ -11,10 +11,13 @@ public class Consultar {
         try {
             Fachada.inicializar();
             System.out.println("consultando...");
-            Fachada.consultarVideoPorUsuario("pablo@ifpb.com");
+            
+            System.out.println(Fachada.consultarVideoPorUsuario("Test3@ifpb.com"));
 
 
             System.out.println(Fachada.consultarUsuariosPorVideo("youtube.com/resenha"));
+
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -5,11 +5,11 @@ import java.time.format.DateTimeParseException;
 
 public class Visualizacao {
 	private int id;
-	private LocalDateTime datahora = LocalDateTime.now();
+	private String datahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	private int nota;
 	private Usuario usuario;
 	private Video video;
-	
+
 	public Visualizacao(int id, int nota, Usuario usuario, Video video) {
 		this.id = id;
 		this.nota = nota;
@@ -22,11 +22,11 @@ public class Visualizacao {
 	}
 
 	public String getdatahora() {
-		return this.datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss"));
+		return datahora;
 	}
 
-	public String getusuario() {
-		return this.usuario.getEmail();
+	public Usuario getusuario() {
+		return this.usuario;
 	}
 
 	public String getvideo() {
@@ -38,13 +38,12 @@ public class Visualizacao {
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "Visualizacao [id=" + id + 
-				", datahora=" + datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss")) +
+		return "Visualizacao [id=" + id +
+				", datahora=" + datahora +
 				", nota=" + nota +
-				"\n usuario=" + usuario.getEmail() + ", video=" + video.getNome() + "]";
+				"\n usuario=" + usuario+ ", video=" + video.getNome() + "]";
 	}
 
 }

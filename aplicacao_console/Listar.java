@@ -14,10 +14,10 @@ public class Listar {
                 System.out.println(v);
             }
             for(Visualizacao vi :Fachada.listarVisualizacao() ) {
-                System.out.println(vi.getId());
+                System.out.println(vi);
             }
             System.out.println("Listado");
-
+            Fachada.listarUsuario();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -1,6 +1,6 @@
 package Swing;
 
-import aplicacao_swing.Teladeregistrodevisualizacao;
+import Swing.Teladeregistrodevisualizacao;
 import fachada.Fachada;
 
 import javax.swing.*;

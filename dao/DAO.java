@@ -6,6 +6,7 @@
 
 package dao;
 
+import java.io.File;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public abstract class DAO<T> implements DAOInterface<T> {
 			abrirBancoLocal();
 		}
 	}
-	public static void abrirBancoLocal(){		
+	public static void abrirBancoLocal(){
 		//new File("banco.db4o").delete();  //apagar o banco
 		EmbeddedConfiguration config =  Db4oEmbedded.newConfiguration(); 
 		config.common().messageLevel(0);  // 0,1,2,3...

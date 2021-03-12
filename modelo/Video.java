@@ -9,7 +9,10 @@ public class Video {
 	private List<Assunto> assuntos = new ArrayList<>();
 	private List<Visualizacao> visualizacoes = new ArrayList<>();
 
-	
+	public List<Visualizacao> getVisualizacoes() {
+		return visualizacoes;
+	}
+
 	public Video(String link, String nome) {
 		this.link = link;
 		this.nome = nome;
@@ -22,6 +25,7 @@ public class Video {
 		assuntos.add(a);
 	}
 	public void adicionar(Visualizacao vis) {
+		visualizacoes.clear();
 		visualizacoes.add(vis);
 	}
 	public void setNome(String nome) {
@@ -38,11 +42,11 @@ public class Video {
 	@Override
 	public String toString() {
 		String texto = "Video [" + (link != null ? "link=" + link + ", " : "") + (nome != null ? "nome=" + nome + ", " : "")
-				+ "media=" + media ;
+				+ "media=";
 		
 		texto+=", assuntos=";
 		for(Assunto a : assuntos) {
-			texto += a.getPalavra();
+			texto += a;
 		}
 		texto+="\n visualizacoes=";
 		for(Visualizacao vis : visualizacoes) {

@@ -56,6 +56,10 @@ public class Fachada {
 	public static Visualizacao registrarVisualizacao(String link, String email, int nota)throws Exception{
 		DAO.begin();
 		Usuario usuario = daousuario.read(email);
+		if(usuario==null) {
+			usuario = new Usuario(email);
+			daousuario.create(usuario);
+		}
 		Video video = daovideo.read(link);
 		if (video == null){
 			DAO.rollback();
@@ -80,6 +84,7 @@ public class Fachada {
 		daovisualizacao.delete(vis);
 		DAO.commit();
 	}
+
 	public Visualizacao localizarVisualizacao(int id)throws Exception{
 		Visualizacao v = daovisualizacao.read(id);
 		if(v == null){
