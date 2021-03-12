@@ -55,8 +55,7 @@ public class TelaCadastrarVideo extends JFrame {
         textField3.setColumns(10);
  //----------------------BOTÃO-----------------------
         btnCadastrar = new JButton("Cadastrar");
-        btnCadastrar.addActionListener(new ActionListener() {
-            @Override
+        btnCadastrar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (textField1.getText().isEmpty() || textField2.getText().isEmpty()){
@@ -67,7 +66,6 @@ public class TelaCadastrarVideo extends JFrame {
                         String video = textField2.getText();
                         String assunto = textField3.getText();
                         Fachada.cadastrarVideo(link, video, assunto);
-                        System.out.println("foi");
                         lblmsg.setText("Link Cadastrado");
                         textField1.setText("");
                         textField1.requestFocus();
@@ -79,8 +77,8 @@ public class TelaCadastrarVideo extends JFrame {
 
 
                 }
-                catch (Exception erro){
-                    lblmsg.setText(erro.getMessage());
+                catch (Exception msg){
+                    lblmsg.setText(msg.getMessage());
                 }
             }
         });

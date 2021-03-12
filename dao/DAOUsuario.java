@@ -12,7 +12,7 @@ public class DAOUsuario extends DAO<Usuario> {
         String email = (String) chave;
         Query q = manager.query();
         q.constrain(Usuario.class);
-        q.descend("email").constrain(email);
+        q.descend("email").constrain(email).like();
         List<Usuario> resultados = q.execute();
         if (resultados.size()>0)
             return resultados.get(0);
@@ -22,7 +22,7 @@ public class DAOUsuario extends DAO<Usuario> {
     public List<Usuario> consultarUsuarioVideo(String link){
         Query q = manager.query();
         q.constrain(Usuario.class);
-        q.descend("visualizacoes").descend("video").descend("link").constrain(link);
+        q.descend("visualizacoes").descend("video").descend("link").constrain(link).like();
         List<Usuario> result = q.execute();
         return result;
     }

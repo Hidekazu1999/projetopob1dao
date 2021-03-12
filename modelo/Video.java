@@ -35,7 +35,7 @@ public class Video {
 		return assuntos;
 	}
 
-		@Override
+	@Override
 	public String toString() {
 		String texto = "Video [" + (link != null ? "link=" + link + ", " : "") + (nome != null ? "nome=" + nome + ", " : "")
 				+ "media=" + media ;

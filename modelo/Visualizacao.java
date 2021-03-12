@@ -1,6 +1,7 @@
 package modelo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Visualizacao {
 	private int id;
@@ -21,7 +22,7 @@ public class Visualizacao {
 	}
 
 	public String getdatahora() {
-		return this.datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyy hh:mm:ss"));
+		return this.datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss"));
 	}
 
 	public String getusuario() {
@@ -41,7 +42,7 @@ public class Visualizacao {
 	@Override
 	public String toString() {
 		return "Visualizacao [id=" + id + 
-				", datahora=" + datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyy hh:mm:ss")) + 
+				", datahora=" + datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss")) +
 				", nota=" + nota +
 				"\n usuario=" + usuario.getEmail() + ", video=" + video.getNome() + "]";
 	}

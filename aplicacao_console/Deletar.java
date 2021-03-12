@@ -8,7 +8,10 @@ public class Deletar {
         try {
             System.out.println("Deletando");
 
+            Fachada.apagarVisualizacao(1);
             Fachada.apagarVisualizacao(2);
+            Fachada.apagarVisualizacao(3);
+
             System.out.println();
 
         } catch (Exception e) {

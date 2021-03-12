@@ -1,11 +1,16 @@
 package Swing;
 
+import aplicacao_swing.Teladeregistrodevisualizacao;
+import fachada.Fachada;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-public class TelaPrincipal {
+public class TelaPrincipal  {
     private JFrame frame;
     private JLabel label;
 
@@ -35,6 +40,21 @@ public class TelaPrincipal {
 
         private void initialize() {
             frame = new JFrame();
+            frame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowOpened(WindowEvent arg0) {
+                    frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+                    Fachada.inicializar();
+
+                    frame.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                }
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    Fachada.finalizar();
+                    JOptionPane.showMessageDialog(frame, "banco fechado !");
+                }
+            });
             frame.setResizable(false);
             frame.setTitle("Link");
 
@@ -51,7 +71,6 @@ public class TelaPrincipal {
                         TelaCadastrarVideo cv = new TelaCadastrarVideo();
                         cv.setLocationRelativeTo(null);
                         cv.setVisible(true);
-                        System.out.println("Okay 1");
                      }
                      catch (Exception a){
                          System.out.println("Deu ruim"+ a);
@@ -67,7 +86,9 @@ public class TelaPrincipal {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try{
-                        System.out.println("Okay 2");
+                        Teladeregistrodevisualizacao trv = new Teladeregistrodevisualizacao();
+                        trv.setLocationRelativeTo(null);
+                        trv.setVisible(true);
                     }
                     catch (Exception a){
                         System.out.println("Deu ruim"+ a);
@@ -85,7 +106,11 @@ public class TelaPrincipal {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try{
-                        System.out.println("Okay 3");
+
+                        TelaListagemVideo lv = new TelaListagemVideo();
+                        lv.setLocationRelativeTo(null);
+                        lv.setVisible(true);
+
                     }
                     catch (Exception a){
                         System.out.println("Deu ruim"+ a);
@@ -104,7 +129,11 @@ public class TelaPrincipal {
             @Override
             public void actionPerformed(ActionEvent e) {
              try{
-                System.out.println("Okay 4");
+
+                TelaListagemVisualizacao tlv = new TelaListagemVisualizacao();
+                tlv.setLocationRelativeTo(null);
+                tlv.setVisible(true);
+
              }
              catch (Exception a){
                 System.out.println("Deu ruim"+ a);

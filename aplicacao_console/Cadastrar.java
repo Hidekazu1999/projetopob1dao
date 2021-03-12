@@ -5,20 +5,31 @@ import modelo.Video;
 
 public class Cadastrar {
 	public Cadastrar() {
-		try {
-			Fachada.inicializar();
-			Video v;
-			v=Fachada.cadastrarVideo("www.google.com", "Site", "Pesquisa");
-			//v=Fachada.cadastrarVideo("youtube.com/video","","Pesquisa");
-			Fachada.registrarVisualizacao("www.google.com","email",10);
-		}
-		catch(Exception e){
-			System.out.println(e.getMessage()); 
-		}
-		finally {
-			Fachada.finalizar();
-		}
+	try{
+		System.out.println("Cadastrando");
+		Fachada.inicializar();
+		/*	Video  */
+/*
+		Fachada.cadastrarVideo("youtube.com/resenha","videos engraçados","engraçado");
+		Fachada.cadastrarVideo("youtube.com/lol","Campeonato Cblol","lol");
+		Fachada.cadastrarVideo("youtube.com/fausto","Aprendendo Java","java");
+
+*/
+
+		/*	Visualizações 	*/
+
+		Fachada.registrarVisualizacao("youtube.com/resenha","pablo@ifpb.com", 1);
+		Fachada.registrarVisualizacao("youtube.com/lol","pablo@ifpb.com",5);
+		Fachada.registrarVisualizacao("youtube.com/fausto","hidekazuo@ifpb.com",3);
+
+
+	} catch (Exception e) 	{
+		System.out.println(e.getMessage());
+	} finally {
+		Fachada.finalizar();
 	}
+		System.out.println("fim do programa");
+}
 	public static void main(String[] args) {
 		
 		new Cadastrar();

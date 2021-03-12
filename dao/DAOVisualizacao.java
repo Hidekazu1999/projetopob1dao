@@ -22,7 +22,7 @@ public class DAOVisualizacao extends DAO<Visualizacao> {
     public List<Visualizacao> consultarVisualizacaoUsuario(String email){
         Query q = manager.query();
         q.constrain(Visualizacao.class);
-        q.descend("usuario").descend("email").constrain(email);
+        q.descend("usuario").descend("email").constrain(email).like();
         List<Visualizacao> result = q.execute();
         return result;
     }

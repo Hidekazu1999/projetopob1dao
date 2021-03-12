@@ -64,7 +64,8 @@ public class Fachada {
 		int idatual = maiorId(email);
 		idatual++;
 		Visualizacao v = new Visualizacao(idatual, nota, usuario, video);
-
+		video.adicionar(v);
+		daovideo.update(video);
 		daovisualizacao.create(v);
 		DAO.commit();
 		return v;
@@ -87,16 +88,23 @@ public class Fachada {
 		return v;
 	}
 	public static List<Video> consultarVideosPorAssunto(String palavra){
-		List<Video> videos = daovideo.consultarVideosPorAssunto(palavra);
-		return videos;
+		if (palavra.isEmpty())
+			return daovideo.readAll();
+		else
+			return daovideo.consultarVideosPorAssunto(palavra);
+
 	}
 	public static List<Video> consultarVideoPorUsuario(String email){
-		List<Video> videos = daovideo.consultarVideosPorUsuario(email);
-		return videos;
+		if (email.isEmpty())
+			return daovideo.readAll();
+		else
+			return daovideo.consultarVideosPorUsuario(email);
 	}
 	public static List<Usuario> consultarUsuariosPorVideo(String link){
-		List<Usuario> users = daousuario.consultarUsuarioVideo(link);
-		return users;
+		if(link.isEmpty())
+			return daousuario.readAll();
+		else
+			return daousuario.consultarUsuarioVideo(link);
 	}
 	public static List<Visualizacao> listarVisualizacao(){
 		return daovisualizacao.readAll();

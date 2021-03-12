@@ -1,19 +1,29 @@
 package aplicacao_console;
 
 import fachada.Fachada;
+import modelo.Usuario;
+import modelo.Video;
+
+import java.util.List;
 
 public class Consultar {
     public Consultar(){
-        Fachada.inicializar();
         try {
-            System.out.println(Fachada.consultarVideosPorAssunto(""));
-            System.out.println(Fachada. consultarVideoPorUsuario(""));
-            System.out.println(Fachada.consultarUsuariosPorVideo(""));
+            Fachada.inicializar();
+            System.out.println("consultando...");
+            Fachada.consultarVideoPorUsuario("pablo@ifpb.com");
+
+
+            System.out.println(Fachada.consultarUsuariosPorVideo("youtube.com/resenha"));
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }finally {
+            Fachada.finalizar();
+            System.out.println("\nfim do programa");
         }
-        Fachada.finalizar();
-        System.out.println("\nfim do programa");
+
+
     }
 
 

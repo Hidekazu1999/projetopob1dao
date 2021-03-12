@@ -23,14 +23,14 @@ public class DAOVideo extends DAO<Video> {
 	public List<Video> consultarVideosPorAssunto(String palavra){
 		Query q = manager.query();
 		q.constrain(Video.class);
-		q.descend("assunto").descend("palavra").constrain(palavra);
+		q.descend("assunto").descend("palavra").constrain(palavra).like();
 		List<Video> result = q.execute();
 		return result;
 	}
 	public List<Video> consultarVideosPorUsuario(String email){
 		Query q = manager.query();
 		q.constrain(Video.class);
-		q.descend("visualizacoes").descend("usuario").descend("email").constrain(email);
+		q.descend("visualizacoes").descend("usuario").descend("email").constrain(email).like();
 		List<Video> result = q.execute();
 		return result;
 	}
